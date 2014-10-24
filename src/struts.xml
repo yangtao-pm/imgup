@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.configuration.xml.reload"  value="true"/>
+	 <constant name="struts.devMode" value="true" /> 
+ <package name="fileUpload" namespace="/fileUpload" extends="struts-default">
+    <action name="uploadFileAction" class="com.ascent.struts2up.action.FileUploadAction" method="uploadFile">
+      <result name="success">../1.jsp</result>
+      <!-- setup the path which including target's file  -->
+          <interceptor-ref name="fileUpload">
+              <!-- 配置允许上传的文件类型，多个用","分隔
+              <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/x-png, image/pjpeg</param>
+               -->
+              <!-- 配置允许上传的文件大小，单位字节 -->
+              <param name="maximumSize">102400000</param>
+           </interceptor-ref>
+           <interceptor-ref name="defaultStack" /> 
+     </action>  
+     
+      <action name="servletFileAction" class="com.ascent.struts2up.action.ServletAction" method="servletFile">
+           <interceptor-ref name="defaultStack" /> 
+     </action>  
+   </package>
+</struts>
